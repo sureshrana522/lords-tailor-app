@@ -1,37 +1,27 @@
-
 import React from 'react';
 import Layout from './components/Layout';
 
-import { CustomerPortal } from './components/CustomerPortal';
-import { AdminDashboard } from './components/AdminDashboard';
-import { WorkerPanel } from './components/WorkerPanel';
-import { VIPShowcase } from './components/VIPShowcase';
-import { MaterialPanel } from './components/MaterialPanel';
-import { FinishingPanel } from './components/FinishingPanel';
-import { Login } from './components/Login';
-import { ShowroomPanel } from './components/ShowroomPanel';
-import { MeasurementPanel } from './components/MeasurementPanel';
-import { ManagerPanel } from './components/ManagerPanel';
-import { BookingMasterPanel } from './components/BookingMasterPanel';
-import { InvestorPanel } from './components/InvestorPanel';
+import CustomerPortal from './components/CustomerPortal';
+import AdminDashboard from './components/AdminDashboard';
+import WorkerPanel from './components/WorkerPanel';
+import VIPShowcase from './components/VIPShowcase';
+import MaterialPanel from './components/MaterialPanel';
+import FinishingPanel from './components/FinishingPanel';
+import Login from './components/Login';
+import ShowroomPanel from './components/ShowroomPanel';
+import MeasurementPanel from './components/MeasurementPanel';
+import ManagerPanel from './components/ManagerPanel';
+import BookingMasterPanel from './components/BookingMasterPanel';
+import InvestorPanel from './components/InvestorPanel';
 
 import { WorkerRole } from './types';
 import { DataProvider, useData } from './DataContext';
 import { ThemeProvider } from './ThemeContext';
 
 import {
-  Scissors,
   Menu,
   X,
-  Trophy,
-  Users,
-  Star,
-  Ruler,
-  Truck,
   ArrowRight,
-  PenTool,
-  Box,
-  ShieldCheck,
   Crown
 } from 'lucide-react';
 
@@ -39,7 +29,9 @@ import {
 
 const MainApp: React.FC = () => {
   const { currentUser, logout } = useData();
-  const [view, setView] = React.useState<'DASHBOARD' | 'SHOWROOM' | 'MATERIAL'>('DASHBOARD');
+  const [view, setView] = React.useState<'DASHBOARD' | 'SHOWROOM' | 'MATERIAL'>(
+    'DASHBOARD'
+  );
 
   if (!currentUser) {
     return <LandingPage />;
@@ -67,6 +59,12 @@ const MainApp: React.FC = () => {
       case WorkerRole.MATERIAL:
         return <MaterialPanel />;
 
+      case WorkerRole.FINISHING:
+        return <FinishingPanel />;
+
+      case WorkerRole.MEASUREMENT:
+        return <MeasurementPanel />;
+
       case WorkerRole.CUTTING:
       case WorkerRole.SHIRT_MAKER:
       case WorkerRole.PANT_MAKER:
@@ -77,12 +75,6 @@ const MainApp: React.FC = () => {
       case WorkerRole.DELIVERY:
       case WorkerRole.STITCHING:
         return <WorkerPanel role={currentUser.role} />;
-
-      case WorkerRole.FINISHING:
-        return <FinishingPanel />;
-
-      case WorkerRole.MEASUREMENT:
-        return <MeasurementPanel />;
 
       default:
         return (
@@ -140,7 +132,9 @@ const MainApp: React.FC = () => {
 /* ================= LANDING PAGE ================= */
 
 const LandingPage: React.FC = () => {
-  const [mode, setMode] = React.useState<'LANDING' | 'CUSTOMER' | 'STAFF'>('LANDING');
+  const [mode, setMode] = React.useState<'LANDING' | 'CUSTOMER' | 'STAFF'>(
+    'LANDING'
+  );
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   if (mode === 'STAFF') return <Login />;
