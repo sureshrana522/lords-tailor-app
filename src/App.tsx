@@ -1,6 +1,6 @@
-
 import React, { useState } from "react";
 import { Crown, Menu, X } from "lucide-react";
+import Layout from "./components/Layout";
 import { ThemeProvider } from "./ThemeContext";
 import { DataProvider } from "./DataContext";
 
@@ -12,30 +12,32 @@ const MainApp: React.FC = () => {
 
   if (mode === "CUSTOMER") {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Customer Order Tracking</h1>
-      </div>
+      <Layout>
+        <div className="flex items-center justify-center min-h-screen">
+          <h1 className="text-2xl font-bold">Customer Order Tracking</h1>
+        </div>
+      </Layout>
     );
   }
 
   if (mode === "STAFF") {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Staff Login</h1>
-      </div>
+      <Layout>
+        <div className="flex items-center justify-center min-h-screen">
+          <h1 className="text-2xl font-bold">Staff Login</h1>
+        </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <Layout>
       <nav className="fixed top-0 w-full bg-black/90 border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto h-20 px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Crown className="text-yellow-500" />
             <div>
-              <h1 className="font-bold tracking-wider">
-                LORDS BESPOKE
-              </h1>
+              <h1 className="font-bold tracking-wider">LORDS BESPOKE</h1>
               <p className="text-[10px] text-yellow-500 tracking-widest">
                 BESPOKE TAILORING
               </p>
@@ -65,7 +67,7 @@ const MainApp: React.FC = () => {
           </button>
         </div>
       )}
-    </div>
+    </Layout>
   );
 };
 
