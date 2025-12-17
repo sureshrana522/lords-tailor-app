@@ -10,7 +10,6 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, role, onLogout }) => {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Top Bar */}
       {role && (
         <div className="flex justify-between items-center px-4 py-3 border-b border-neutral-800">
           <div className="font-bold tracking-wide">
@@ -27,7 +26,6 @@ const Layout: React.FC<LayoutProps> = ({ children, role, onLogout }) => {
         </div>
       )}
 
-      {/* Page Content */}
       <div className="p-4">{children}</div>
     </div>
   );
